@@ -9,8 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jspecify.annotations.NonNull;
 
-public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemStackTemplate output) implements Recipe<TwoOutputRecipeInput> {
+public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemStackTemplate output) implements Recipe<TwoInputRecipeInput> {
     public static final MapCodec<TwoInputRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
                     Ingredient.CODEC.fieldOf("ingredient_a").forGetter(TwoInputRecipe::inputItemA),
@@ -31,26 +32,19 @@ public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemS
                     TwoInputRecipe::new);
 
 
-
-
-
     @Override
-    public boolean matches(TwoOutputRecipeInput input, Level level) {
+    public boolean matches(@NonNull TwoInputRecipeInput input, Level level) {
         if(level.isClientSide()) {
             return false;
         }
 
-        if () {
-
-        }
         return inputItemA.test(input.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(TwoOutputRecipeInput input) {
+    public ItemStack assemble(TwoInputRecipeInput input) {
         return output.create().copy();
     }
-
 
     /**
      * @return
@@ -72,7 +66,7 @@ public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemS
      * @return
      */
     @Override
-    public RecipeSerializer<? extends Recipe<TwoOutputRecipeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<TwoInputRecipeInput>> getSerializer() {
         return ModRecipes.TWO_INPUT_RECIPE_SERIALIZER;
     }
 
@@ -80,7 +74,7 @@ public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemS
      * @return
      */
     @Override
-    public RecipeType<? extends Recipe<TwoOutputRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<TwoInputRecipeInput>> getType() {
         return ModRecipes.TWO_INPUT_RECIPE_TYPE;
     }
 

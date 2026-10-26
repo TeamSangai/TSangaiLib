@@ -18,6 +18,9 @@
 		"main": [
 			"geoves.tsangailib.TSangaiLib"
 		],
+		"client":[
+			"geoves.tsangailib.TSangaiLibClient"
+		],
 		"fabric-datagen": [
 			"geoves.tsangailib.TSangaiLibDataGenerator"
 		]

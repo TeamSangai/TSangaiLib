@@ -39,7 +39,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Optional;
 
 public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implements ExtendedMenuProvider<BlockPos> {
-    private static final Component DEFAULT_NAME = Component.translatable("container.slag_furnace");
+    private static final Component DEFAULT_NAME = Component.translatable("container.two_output");
     private final short DEFAULT_LIT_TIME_REMAINING = 0;
     private final short DEFAULT_LIT_TOTAL_TIME = 0;
     private NonNullList<ItemStack> items;
@@ -101,7 +101,7 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
 
     @Override
     public @NonNull Component getDisplayName() {
-        return Component.translatable("block.grimeandgold.slag_furnace");
+        return Component.translatable("block.tsangailib.testtwooutput");
     }
 
 
@@ -125,8 +125,8 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
-        output.putInt("slag_furnace.progress", cookingTimer);
-        output.putInt("slag_furnace.max_progress", cookingTotalTime);
+        output.putInt("two_output_furnace.progress", cookingTimer);
+        output.putInt("two_output_furnace.max_progress", cookingTotalTime);
 
         ContainerHelper.saveAllItems(output, this.items);
     }
@@ -134,8 +134,8 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
-        cookingTimer = input.getIntOr("slag_furnace.progress", 0);
-        cookingTotalTime = input.getIntOr("slag_furnace.max_progress", 124);
+        cookingTimer = input.getIntOr("two_output_furnace.progress", 0);
+        cookingTotalTime = input.getIntOr("two_output_furnace.max_progress", 124);
 
         ContainerHelper.loadAllItems(input, this.items);
     }

@@ -1,5 +1,8 @@
 package geoves.tsangailib;
 
+import geoves.tsangailib.block.ModBlocks;
+import geoves.tsangailib.block.entity.ModBlockEntities;
+import geoves.tsangailib.recipe.ModRecipes;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -20,7 +23,10 @@ public class TSangaiLib implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-
+		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerBlockEntities();
+		ModRecipes.registerModRecipes();
+		ModItems.registerModItems();
 		LOGGER.info("Hello Fabric world!");
 	}
 

@@ -19,6 +19,6 @@ public record TwoInputRecipeInput(ItemStack inputa, ItemStack inputb) implements
      */
     @Override
     public int size() {
-        return 1;
+        return 2;
     }
 }

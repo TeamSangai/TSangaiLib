@@ -1,6 +1,7 @@
 package geoves.tsangailib.block;
 
 import geoves.tsangailib.TSangaiLib;
+import geoves.tsangailib.block.custom.TwoInputFurnaceBlock;
 import geoves.tsangailib.block.custom.TwoOutputFurnaceBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,7 +18,8 @@ import java.util.function.Function;
 
 public class ModBlocks {
 
-    public static final Block TEST_TWO_OUTPUT_FURNACE = registerBlock("test_two_ouput_furnace", properties -> new TwoOutputFurnaceBlock(properties.sound(SoundType.POLISHED_DEEPSLATE).strength(0.6f, 0.75f).requiresCorrectToolForDrops()));
+    public static final Block TEST_TWO_OUTPUT_FURNACE = registerBlock("test_two_output_furnace", properties -> new TwoOutputFurnaceBlock(properties.sound(SoundType.POLISHED_DEEPSLATE).strength(0.6f, 0.75f).requiresCorrectToolForDrops()));
+    public static final Block TEST_TWO_INPUT_FURNACE = registerBlock("test_two_input_furnace", properties -> new TwoInputFurnaceBlock(properties.sound(SoundType.POLISHED_DEEPSLATE).strength(0.6f, 0.75f).requiresCorrectToolForDrops()));
 
 
     private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> function) {
