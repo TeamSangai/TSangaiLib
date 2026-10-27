@@ -1,0 +1,8 @@
+{
+  "type": "tsangailib:two_input_smelting",
+  "ingredient_a": "tsangailib:test_item_a",
+  "ingredient_b": "tsangailib:test_item_b",
+  "result": {
+    "id": "minecraft:diamond"
+  }
+}

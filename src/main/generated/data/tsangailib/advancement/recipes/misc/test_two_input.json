@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "tsangailib:test_two_input"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "test_item_a": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tsangailib:test_item_a"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "test_item_a"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tsangailib:test_two_input"
+    ]
+  }
+}

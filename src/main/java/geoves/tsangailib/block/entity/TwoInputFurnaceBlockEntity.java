@@ -177,7 +177,7 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
         ItemStack ingredientB = items.get(1);
         boolean hasIngredientA = !ingredientA.isEmpty();
         boolean hasIngredientB = !ingredientB.isEmpty();
-        boolean bl = hasFuel = !fuel.isEmpty();
+        hasFuel = !fuel.isEmpty();
         if (isLit || hasFuel && hasIngredientA && hasIngredientB) {
             if (hasIngredientA && hasIngredientB) {
                 TwoInputRecipeInput TwoInputRecipeInput = new TwoInputRecipeInput(ingredientA, ingredientB);

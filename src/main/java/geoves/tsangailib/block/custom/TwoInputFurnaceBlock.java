@@ -29,7 +29,7 @@ public class TwoInputFurnaceBlock extends AbstractFurnaceBlock {
             return null;
         }
 
-        return createTickerHelper(type, ModBlockEntities.TWO_OUTPUT_FURNACE_BLOCK_ENTITY_TYPE,
+        return createTickerHelper(type, ModBlockEntities.TWO_INPUT_FURNACE_BLOCK_ENTITY_TYPE,
                 (level1, pos, state, entity) -> entity.ServerTick(Objects.requireNonNull(level1.getServer()).getLevel(level1.dimension()), pos, state));
     }
 

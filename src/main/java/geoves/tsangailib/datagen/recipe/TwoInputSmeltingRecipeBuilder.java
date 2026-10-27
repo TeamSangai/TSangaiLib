@@ -29,12 +29,10 @@ public class TwoInputSmeltingRecipeBuilder implements RecipeBuilder {
     }
 
     public static TwoInputSmeltingRecipeBuilder twoInputSmeltingRecipe(RecipeCategory category, Ingredient ingredientA, Ingredient ingredientB, ItemLike outputitem, int resultcount) {
-        inversedTwoInputSmeltingRecipe(category, ingredientA, ingredientB, outputitem, resultcount);
         return new TwoInputSmeltingRecipeBuilder(category, ingredientA, ingredientB, new ItemStackTemplate(outputitem.asItem(), resultcount));
     }
 
     public static TwoInputSmeltingRecipeBuilder twoInputSmeltingRecipe(RecipeCategory category, Ingredient ingredientA, Ingredient ingredientB, ItemLike outputitem) {
-        inversedTwoInputSmeltingRecipe(category, ingredientA, ingredientB, outputitem);
         return new TwoInputSmeltingRecipeBuilder(category, ingredientA, ingredientB, new ItemStackTemplate(outputitem.asItem()));
     }
     public static TwoInputSmeltingRecipeBuilder inversedTwoInputSmeltingRecipe(RecipeCategory category, Ingredient ingredientA, Ingredient ingredientB, ItemLike outputitem, int resultcount) {

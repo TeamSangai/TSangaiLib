@@ -30,8 +30,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         return new RecipeProvider(recipes, advancements) {
             @Override
             public void buildRecipes() {
-                TwoOutputSmeltingRecipeBuilder.twoOutputSmeltingRecipe(RecipeCategory.MISC, Ingredient.of(ModItems.TEST_ITEM_A), Items.IRON_INGOT, Items.IRON_NUGGET);
-                TwoInputSmeltingRecipeBuilder.twoInputSmeltingRecipe(RecipeCategory.MISC, Ingredient.of(ModItems.TEST_ITEM_A), Ingredient.of(ModItems.TEST_ITEM_B), Items.DIAMOND);
+                TwoOutputSmeltingRecipeBuilder.twoOutputSmeltingRecipe(RecipeCategory.MISC, Ingredient.of(ModItems.TEST_ITEM_A), Items.IRON_INGOT,
+                                Items.IRON_NUGGET).unlockedBy(getItemName(ModItems.TEST_ITEM_A), has(ModItems.TEST_ITEM_A))
+                        .save(output, "tsangailib:test_two_output");
+                TwoInputSmeltingRecipeBuilder.twoInputSmeltingRecipe(RecipeCategory.MISC, Ingredient.of(ModItems.TEST_ITEM_A),
+                        Ingredient.of(ModItems.TEST_ITEM_B), Items.DIAMOND).unlockedBy(getItemName(ModItems.TEST_ITEM_A), has(ModItems.TEST_ITEM_A))
+                        .save(output, "tsangailib:test_two_input");
+                TwoInputSmeltingRecipeBuilder.inversedTwoInputSmeltingRecipe(RecipeCategory.MISC, Ingredient.of(ModItems.TEST_ITEM_A),
+                        Ingredient.of(ModItems.TEST_ITEM_B), Items.DIAMOND).unlockedBy(getItemName(ModItems.TEST_ITEM_A), has(ModItems.TEST_ITEM_A))
+                        .save(output, "tsangailib:test_two_input_inversed");
+
             }
         };
     }

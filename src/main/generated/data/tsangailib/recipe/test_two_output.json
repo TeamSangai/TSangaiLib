@@ -1,0 +1,10 @@
+{
+  "type": "tsangailib:two_output_smelting",
+  "byproduct": {
+    "id": "minecraft:iron_nugget"
+  },
+  "ingredient": "tsangailib:test_item_a",
+  "result": {
+    "id": "minecraft:iron_ingot"
+  }
+}
