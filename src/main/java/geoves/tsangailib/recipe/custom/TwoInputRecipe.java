@@ -34,11 +34,7 @@ public record TwoInputRecipe(Ingredient inputItemA, Ingredient inputItemB, ItemS
 
     @Override
     public boolean matches(@NonNull TwoInputRecipeInput input, Level level) {
-        if(level.isClientSide()) {
-            return false;
-        }
-
-        return inputItemA.test(input.getItem(0));
+        return inputItemA.test(input.getItem(0)) && inputItemB.test(input.getItem(1));
     }
 
     @Override

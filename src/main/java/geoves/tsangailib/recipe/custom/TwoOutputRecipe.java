@@ -35,9 +35,6 @@ public record TwoOutputRecipe(Ingredient inputItem, ItemStackTemplate output, It
 
     @Override
     public boolean matches(TwoOutputRecipeInput input, Level level) {
-        if(level.isClientSide()) {
-            return false;
-        }
 
         return inputItem.test(input.getItem(0));
     }

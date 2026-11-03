@@ -1,6 +1,7 @@
 package geoves.tsangailib.block.entity;
 
 
+import geoves.tsangailib.TSangaiLib;
 import geoves.tsangailib.block.custom.TwoOutputFurnaceBlock;
 import geoves.tsangailib.menu.TwoOutputFurnaceMenu;
 import geoves.tsangailib.recipe.ModRecipes;
@@ -198,6 +199,7 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
                         if (isLit) {
                             ++cookingTimer;
                             if (cookingTimer >= cookingTotalTime) {
+                                TSangaiLib.LOGGER.info(String.valueOf(cookingTimer));
                                 cookingTimer = 0;
                                 cookingTotalTime = this.getTotalCookTime(recipe, this);
                                 craftItem();
@@ -278,13 +280,14 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
 
     private void craftItem() {
         Optional<RecipeHolder<TwoOutputRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().assemble(new TwoOutputRecipeInput(this.items.get(INPUT_SLOT)));
-        ItemStack byproduct = recipe.get().value().byproduct().apply(1, DataComponentPatch.EMPTY);
+        if (recipe.isPresent()) {
+            ItemStack output = recipe.get().value().assemble(new TwoOutputRecipeInput(this.items.get(INPUT_SLOT)));
+            ItemStack byproduct = recipe.get().value().byproduct().apply(1, DataComponentPatch.EMPTY);
 
-        this.items.set(INPUT_SLOT, this.items.get(INPUT_SLOT).copyWithCount(this.items.get(INPUT_SLOT).getCount() - 1));
-        this.items.set(OUTPUT_SLOT, output.copyWithCount(this.items.get(OUTPUT_SLOT).getCount() + output.getCount()));
-        this.items.set(BYPRODUCT_SLOT, byproduct.copyWithCount(this.items.get(BYPRODUCT_SLOT).getCount() + byproduct.getCount()));
-
+            this.items.set(INPUT_SLOT, this.items.get(INPUT_SLOT).copyWithCount(this.items.get(INPUT_SLOT).getCount() - 1));
+            this.items.set(OUTPUT_SLOT, output.copyWithCount(this.items.get(OUTPUT_SLOT).getCount() + output.getCount()));
+            this.items.set(BYPRODUCT_SLOT, byproduct.copyWithCount(this.items.get(BYPRODUCT_SLOT).getCount() + byproduct.getCount()));
+        }
     }
 
     @Override

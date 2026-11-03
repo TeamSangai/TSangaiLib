@@ -172,9 +172,9 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
             wasLit = false;
             isLit = false;
         }
-        ItemStack fuel = items.get(2);
-        ItemStack ingredientA = items.get(0);
-        ItemStack ingredientB = items.get(1);
+        ItemStack fuel = items.get(FUEL_SLOT);
+        ItemStack ingredientA = items.get(INPUT_SLOT_A);
+        ItemStack ingredientB = items.get(INPUT_SLOT_B);
         boolean hasIngredientA = !ingredientA.isEmpty();
         boolean hasIngredientB = !ingredientB.isEmpty();
         hasFuel = !fuel.isEmpty();
@@ -237,7 +237,7 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
 
 
     private boolean canBurn(NonNullList<ItemStack> items, int maxStackSize, ItemStack burnResult) {
-        ItemStack resultItemStack = items.get(2);
+        ItemStack resultItemStack = items.get(3);
         if (resultItemStack.isEmpty()) {
             return true;
         }
@@ -275,7 +275,7 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), remainder.create());
             }
         }
-        items.set(1, newFuel);
+        items.set(FUEL_SLOT, newFuel);
     }
     private int getTotalCookTime(RecipeHolder<? extends TwoInputRecipe> recipe, TwoInputFurnaceBlockEntity entity) {
         int cookingTotalTime = 200;
@@ -286,12 +286,12 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
 
     private void craftItem() {
         Optional<RecipeHolder<TwoInputRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().assemble(new TwoInputRecipeInput(this.items.get(INPUT_SLOT_A),this.items.get(INPUT_SLOT_A)));
-
-        this.items.set(INPUT_SLOT_A, this.items.get(INPUT_SLOT_A).copyWithCount(this.items.get(INPUT_SLOT_A).getCount() - 1));
-        this.items.set(INPUT_SLOT_B, this.items.get(INPUT_SLOT_B).copyWithCount(this.items.get(INPUT_SLOT_B).getCount() - 1));
-        this.items.set(OUTPUT_SLOT, output.copyWithCount(this.items.get(OUTPUT_SLOT).getCount() + output.getCount()));
-
+        if (recipe.isPresent()) {
+            ItemStack output = recipe.get().value().assemble(new TwoInputRecipeInput(this.items.get(INPUT_SLOT_A),this.items.get(INPUT_SLOT_A)));
+            this.items.set(INPUT_SLOT_A, this.items.get(INPUT_SLOT_A).copyWithCount(this.items.get(INPUT_SLOT_A).getCount() - 1));
+            this.items.set(INPUT_SLOT_B, this.items.get(INPUT_SLOT_B).copyWithCount(this.items.get(INPUT_SLOT_B).getCount() - 1));
+            this.items.set(OUTPUT_SLOT, output.copyWithCount(this.items.get(OUTPUT_SLOT).getCount() + output.getCount()));
+        }
     }
 
     @Override

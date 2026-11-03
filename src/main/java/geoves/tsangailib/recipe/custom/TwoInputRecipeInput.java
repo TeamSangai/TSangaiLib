@@ -11,7 +11,11 @@ public record TwoInputRecipeInput(ItemStack inputa, ItemStack inputb) implements
      */
     @Override
     public ItemStack getItem(int index) {
-        return null;
+        switch (index) {
+            case 0 -> {return inputa;}
+            case 1 -> {return inputb;}
+            default -> throw new IllegalArgumentException();
+        }
     }
 
     /**
