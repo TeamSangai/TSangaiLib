@@ -61,6 +61,8 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
 
     public TwoOutputFurnaceBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
         super(ModBlockEntities.TWO_OUTPUT_FURNACE_BLOCK_ENTITY_TYPE, worldPosition, blockState);
+        this.cookingTimer = 0;
+        this.cookingTotalTime = 200;
         this.recipesUsed = new Reference2IntOpenHashMap<>();
         this.data = new ContainerData() {
 

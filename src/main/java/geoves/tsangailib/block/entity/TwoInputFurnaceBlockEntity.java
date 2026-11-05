@@ -66,6 +66,8 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
 
     public TwoInputFurnaceBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
         super(ModBlockEntities.TWO_INPUT_FURNACE_BLOCK_ENTITY_TYPE, worldPosition, blockState);
+        this.cookingTimer = 0;
+        this.cookingTotalTime = 200;
         this.recipesUsed = new Reference2IntOpenHashMap<>();
         this.data = new ContainerData() {
 
@@ -141,7 +143,7 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
         cookingTimer = input.getIntOr("two_input_furnace.progress", 0);
-        cookingTotalTime = input.getIntOr("two_input_furnace.max_progress", 124);
+        cookingTotalTime = input.getIntOr("two_input_furnace.max_progress", 0);
 
         ContainerHelper.loadAllItems(input, this.items);
     }
@@ -205,11 +207,11 @@ public class TwoInputFurnaceBlockEntity extends BaseContainerBlockEntity impleme
                         }
                         if (isLit) {
                             ++cookingTimer;
-                            if (cookingTimer >= cookingTotalTime) {
-                                cookingTimer = 0;
-                                cookingTotalTime = this.getTotalCookTime(recipe, this);
+                            if (this.cookingTimer >= this.cookingTotalTime) {
+                                this.cookingTimer = 0;
+                                this.cookingTotalTime = this.getTotalCookTime(recipe, this);
                                 craftItem();
-                                setRecipeUsed(recipe);
+                                this.setRecipeUsed(recipe);
                                 changed = true;
                             }
                         } else {
