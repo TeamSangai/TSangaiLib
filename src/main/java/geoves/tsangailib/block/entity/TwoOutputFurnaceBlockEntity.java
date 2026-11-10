@@ -29,6 +29,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.CookingFuel;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -59,8 +60,8 @@ public class TwoOutputFurnaceBlockEntity extends BaseContainerBlockEntity implem
     private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed;
 
 
-    public TwoOutputFurnaceBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
-        super(ModBlockEntities.TWO_OUTPUT_FURNACE_BLOCK_ENTITY_TYPE, worldPosition, blockState);
+    public TwoOutputFurnaceBlockEntity(final BlockEntityType<?> type, final BlockPos worldPosition, final BlockState blockState) {
+        super(type, worldPosition, blockState);
         this.cookingTimer = 0;
         this.cookingTotalTime = 200;
         this.recipesUsed = new Reference2IntOpenHashMap<>();

@@ -45,6 +45,6 @@ public class TwoOutputFurnaceBlock extends AbstractFurnaceBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos worldPosition, BlockState blockState) {
-        return new TwoOutputFurnaceBlockEntity(worldPosition, blockState);
+        return new TwoOutputFurnaceBlockEntity(ModBlockEntities.TWO_OUTPUT_FURNACE_BLOCK_ENTITY_TYPE, worldPosition, blockState);
     }
 }

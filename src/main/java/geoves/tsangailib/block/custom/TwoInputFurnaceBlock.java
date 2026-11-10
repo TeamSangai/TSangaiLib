@@ -2,7 +2,6 @@ package geoves.tsangailib.block.custom;
 
 import geoves.tsangailib.block.entity.ModBlockEntities;
 import geoves.tsangailib.block.entity.TwoInputFurnaceBlockEntity;
-import geoves.tsangailib.block.entity.TwoOutputFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -46,6 +45,6 @@ public class TwoInputFurnaceBlock extends AbstractFurnaceBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos worldPosition, BlockState blockState) {
-        return new TwoInputFurnaceBlockEntity(worldPosition, blockState);
+        return new TwoInputFurnaceBlockEntity(ModBlockEntities.TWO_INPUT_FURNACE_BLOCK_ENTITY_TYPE, worldPosition, blockState);
     }
 }
